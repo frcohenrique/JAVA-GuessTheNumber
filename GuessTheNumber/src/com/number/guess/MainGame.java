@@ -81,12 +81,18 @@ public class MainGame {
             System.exit(0);
         }); //botão de desistir. Fecha o jogo
 
-        btnReset.addActionListener(e -> resetGame());  // resetar o jogo, incluindo pontos.
+
 
         btnResetRandom.addActionListener(e -> {
             playerAnswer.setText("");
             continueGame();
         }); //resetar apenas o random e ativar o botão Guess.
+        btnReset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+               resetGame();
+            }
+        });
     }
 
     public static void main(String[] args) {
@@ -153,25 +159,25 @@ public class MainGame {
     } //Fazer o botão Resetar Random piscar.
 
     public void resetGame() {
-
-        randomNumber = rand.nextInt(100) + 1;
-        i = 0;
-        failureCounter = 0;
-        successCounter = 0;
-        labelFailures.setText(" ");
-        labelSetAnswer.setText(" ");
-        labelScore.setText(" ");
-        playerAnswer.setText(" ");
         playerAnswer.setEnabled(true);
         btnGuess.setEnabled(true);
         btnResetRandom.setEnabled(true);
+        randomNumber = rand.nextInt(100) + 1;
+        attempts = 15;
+        failureCounter = 0;
+        successCounter = 0;
+        labelFailures.setText("");
+        labelSetAnswer.setText("");
+        labelScore.setText("");
+        playerAnswer.setText("");
+
 
     } //Resetar jogo (incluindo pontos)
 
     public void continueGame(){
         btnGuess.setEnabled(true);
         randomNumber = rand.nextInt(100) + 1;
-        labelSetAnswer.setText(" ");
+        labelSetAnswer.setText("");
         playerAnswer.setEnabled(true);
     } //Continuar jogo (resetar apenas o botão e o random)
 
